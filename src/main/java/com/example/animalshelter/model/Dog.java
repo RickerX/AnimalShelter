@@ -7,17 +7,27 @@ public class Dog {
     private int id;
 
     private String breed;
-    private int age;
-    private int weight;
+    private float age;
+    private float weight;
     private String name;
+    private String gender;
 
-    public Dog(int id, String breed, int age, int weight, String name) {
+    public Dog(int id, String breed, float age, float weight, String name, String gender) {
         this.id = id;
         this.breed = breed;
         this.age = age;
         this.weight = weight;
         this.name = name;
+        this.gender = gender;
     }
+
+    public Dog(String breed, int age, int weight, String name) {
+        this.breed = breed;
+        this.age = age;
+        this.weight = weight;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -30,7 +40,7 @@ public class Dog {
         this.breed = breed;
     }
 
-    public int getAge() {
+    public float getAge() {
         return age;
     }
 
@@ -38,7 +48,7 @@ public class Dog {
         this.age = age;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
@@ -54,16 +64,25 @@ public class Dog {
         this.name = name;
     }
 
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dog dog = (Dog) o;
-        return id == dog.id && age == dog.age && weight == dog.weight && Objects.equals(breed, dog.breed) && Objects.equals(name, dog.name);
+        return id == dog.id && age == dog.age && weight == dog.weight && Objects.equals(breed, dog.breed) && Objects.equals(name, dog.name) && Objects.equals(gender, dog.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, breed, age, weight, name);
+        return Objects.hash(id, breed, age, weight, name, gender);
     }
 }
