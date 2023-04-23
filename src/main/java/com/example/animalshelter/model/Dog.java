@@ -20,14 +20,6 @@ public class Dog {
         this.name = name;
         this.gender = gender;
     }
-
-    public Dog(String breed, int age, int weight, String name) {
-        this.breed = breed;
-        this.age = age;
-        this.weight = weight;
-        this.name = name;
-    }
-
     public int getId() {
         return id;
     }
