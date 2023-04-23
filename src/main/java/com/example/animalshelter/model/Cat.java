@@ -1,16 +1,27 @@
 package com.example.animalshelter.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
+@Entity
+@Table(name = "cat")
 
 public class Cat {
-
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Column(name = "id")
      private int id;
+     @Column(name = "breed_cat")
      private String breed;
+     @Column(name = "age_cat")
      private float age;
+     @Column(name = "weight_cat")
      private float weight;
+     @Column(name = "nickname_cat")
      private String name;
+     @Column(name = "gender_cat")
      private String gender;
-
+     public Cat(){}
      public Cat(int id, String breed, float age, float weight, String name,String gender) {
           this.id = id;
           this.breed = breed;

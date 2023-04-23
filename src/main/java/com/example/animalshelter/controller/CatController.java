@@ -29,8 +29,8 @@ public class CatController {
     }
 
     @PostMapping("/add")
-    @Operation(summary = "Добавление собак в приют")
+    @Operation(summary = "Добавление котов в приют")
     public Cat add(Cat cat) {
-        return this.catServices.addDog(cat);
+        return this.catServices.addCat(cat);
     }
 }

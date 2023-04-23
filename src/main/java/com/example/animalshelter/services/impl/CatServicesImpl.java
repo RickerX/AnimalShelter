@@ -17,9 +17,9 @@ public class CatServicesImpl implements CatServices {
         return catMap.values();
     }
     @Override
-    public Cat addDog(Cat cat) {
+    public Cat addCat(Cat cat) {
         if (catMap.containsKey(cat.getId())) {
-            throw new InvalidAnimalRequestException("Собака под этим id уже есть");
+            throw new InvalidAnimalRequestException("Кошка под этим id уже есть");
         } else {
             catMap.put(cat.getId(), cat);
         }
