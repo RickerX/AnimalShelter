@@ -1,7 +1,5 @@
 package com.example.animalshelter.controller;
-
 import com.example.animalshelter.model.Cat;
-import com.example.animalshelter.model.Dog;
 import com.example.animalshelter.services.impl.CatServicesImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
