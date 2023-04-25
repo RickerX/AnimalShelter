@@ -1,7 +1,5 @@
 package com.example.animalshelter.controller;
-
 import com.example.animalshelter.model.Cat;
-import com.example.animalshelter.model.Dog;
 import com.example.animalshelter.services.impl.CatServicesImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,8 +27,8 @@ public class CatController {
     }
 
     @PostMapping("/add")
-    @Operation(summary = "Добавление собак в приют")
+    @Operation(summary = "Добавление котов в приют")
     public Cat add(Cat cat) {
-        return this.catServices.addDog(cat);
+        return this.catServices.addCat(cat);
     }
 }

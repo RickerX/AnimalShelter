@@ -7,5 +7,5 @@ import java.util.Collection;
 public interface CatServices {
     Collection<Cat> getAll();
 
-    Cat addDog(Cat cat);
+    Cat addCat(Cat cat);
 }
