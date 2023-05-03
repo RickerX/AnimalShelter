@@ -3,6 +3,7 @@ package com.example.animalshelter.services.impl;
 import com.example.animalshelter.exception.InvalidAnimalRequestException;
 
 import com.example.animalshelter.model.Dog;
+import com.example.animalshelter.repository.DogRepository;
 import com.example.animalshelter.services.DogServices;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 @Service
 public class DogServicesImpl implements DogServices {
+    private final DogRepository dogRepository;
     private final Map<Integer, Dog> dogMap = new HashMap<>();
+
+    public DogServicesImpl(DogRepository dogRepository) {
+        this.dogRepository = dogRepository;
+    }
+    public Dog createDog(Dog dog) {
+        return dogRepository.save(dog);
+    }
 
     /**
      * Все собаки в БД.

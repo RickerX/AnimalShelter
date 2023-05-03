@@ -1,0 +1,59 @@
+package com.example.animalshelter.services;
+
+import com.example.animalshelter.services.MessageService;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MenuService {
+    public static final String CAT_SHELTER = "Приют для кошек";
+    public static final String DOG_SHELTER = "Приют для собак";
+    public static void sendChoiceShelterMenu(Long chatId) {
+        InlineKeyboardMarkup keyboardMarkup = createTwiceButtons(CAT_SHELTER, DOG_SHELTER);
+        MessageService.sendMessage(chatId, "choice shelter menu", "Выбери раздел:", keyboardMarkup);
+    }
+
+    public static void sendAnimalGuideMenu(long chatId) {
+        MessageService.sendMessage(chatId, "animal guide menu", "Вот что я могу тебе рассказать:\n" +
+                "\n" +
+                "/datingRules - правила знакомства с животным до того, как забрать его из приюта.\n" +
+                "/docList - список документов, необходимых для того, чтобы взять животное из приюта.\n" +
+                "/homeForOld - список рекомендаций по обустройству дома для взрослого животного.\n" +
+                "/denialReasons - список причин, почему могут отказать и не дать забрать собаку из приюта.\n" +
+                "\n" +
+                "Не нашли ответа на свой вопрос?\n" +
+                "\n" +
+                "/callback - запросить обратный звонок\n" +
+                "/volunteer - позвать волонтёра в чат");
+    }
+
+
+    public static InlineKeyboardMarkup createTwiceButtons(String ... buttons) {
+        int length = buttons.length;
+        InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
+        for (int i = 0; i < length / 2; i++) {
+            InlineKeyboardButton button1 = new InlineKeyboardButton(buttons[i*2]);
+            InlineKeyboardButton button2 = new InlineKeyboardButton(buttons[i*2+1]);
+            button1.callbackData(button1.text());
+            button2.callbackData(button2.text());
+            keyboardMarkup.addRow(button1, button2);
+        }
+        if (length % 2 != 0) {
+            InlineKeyboardButton button1 = new InlineKeyboardButton(buttons[length - 1]);
+            button1.callbackData(button1.text());
+            keyboardMarkup.addRow(button1);
+        }
+        return keyboardMarkup;
+    }
+//    public static String getCommandByButton(String text) {
+//        String command;
+//        switch (text) {
+//            case CAT_SHELTER -> command = "/catShelter";
+//            case DOG_SHELTER -> command = "/dogShelter";
+//            default -> command = text;
+//        }
+//        return command;
+//    }
+
+}
