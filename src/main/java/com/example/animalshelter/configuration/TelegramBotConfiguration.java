@@ -8,11 +8,23 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TelegramBotConfiguration {
+    /**
+     *  Поле с Sting именем token.
+     */
     private final String token;
 
+    /**
+     * Путь к токену.
+     * @param token идентификатор бота.
+     */
     public TelegramBotConfiguration(@Value("${telegram.bot.token}") String token) {
         this.token = token;
     }
+
+    /**
+     * Метод для скрытия идентификатор от посторонних пользователей.
+     * @return возвращает зашифрованный токен.
+     */
     @Bean
     public TelegramBot telegramBot() {
         TelegramBot bot = new TelegramBot(token);

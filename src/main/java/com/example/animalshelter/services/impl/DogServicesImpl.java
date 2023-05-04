@@ -18,6 +18,13 @@ public class DogServicesImpl implements DogServices {
     public DogServicesImpl(DogRepository dogRepository) {
         this.dogRepository = dogRepository;
     }
+
+    /**
+     * Метод создает объект и сохраняет в репозиторий.
+     * <br>
+     * @param dog идентификатор, не может быть null.
+     * @return сохраняет в репозиторий.
+     */
     public Dog createDog(Dog dog) {
         return dogRepository.save(dog);
     }
