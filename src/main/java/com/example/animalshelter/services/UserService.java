@@ -47,12 +47,11 @@ public class UserService {
         if (userMessage.startsWith("/menu")) {
             switch (userMessage) {
                 case "/menuChoiceShelter" -> MenuService.sendChoiceShelterMenu(chatId);
+                case "/menuMainShelter" -> MenuService.sendMainShelterMenu(chatId);
+                case "/menuAboutShelter" -> MenuService.sendAboutShelterMenu(chatId);
                 case "/menuAnimalGuide" -> MenuService.sendAnimalGuideMenu(chatId);
                 default -> MessageService.sendMessage(chatId, "incorrect menu request!");
             }
-//            if (user == null) {
-//                return;
-//            }
         } else if (userMessage.equals("/start")){
             MenuService.sendChoiceShelterMenu(chatId);
         } else if (userMessage.equals("/catShelter")) {

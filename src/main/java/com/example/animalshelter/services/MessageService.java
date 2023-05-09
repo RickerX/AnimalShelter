@@ -53,8 +53,8 @@ public class MessageService {
         sendMessage(chatId, text, text, null);
     }
 
-//    public static void sendMessage(SendMessage sendMessage) {
-//        telegramBot.execute(sendMessage);
-//    }
+    public static void sendMessage(SendMessage sendMessage) {
+        telegramBot.execute(sendMessage);
+    }
 
 }

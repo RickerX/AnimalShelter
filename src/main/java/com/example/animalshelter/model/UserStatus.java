@@ -2,6 +2,14 @@ package com.example.animalshelter.model;
 
 public enum UserStatus {
 
-    JUST_USING
+    JUST_USING,
+    SENDING_PHONE,
+    FILLING_REPORT,
+    SENDING_PHONE_ANSWER,
+    SENDING_PHONE_IS_ACTUAL_ANSWER,
+    REPORT_YOU_WANNA_TRY_AGAIN,
+    CHOOSING_PET_FOR_REPORT,
+    SENDING_ADOPTER_USERNAME,
+    ADMIN
 
 }

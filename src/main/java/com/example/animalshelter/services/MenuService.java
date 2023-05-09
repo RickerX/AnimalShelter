@@ -9,6 +9,16 @@ import org.springframework.stereotype.Service;
 public class MenuService {
     public static final String CAT_SHELTER = "Приют для кошек";
     public static final String DOG_SHELTER = "Приют для собак";
+    public static final String SHELTER_INFO = "Информация о приюте";
+    public static final String ANIMAL_INFO = "Как взять питомца из приюта";
+    public static final String SEND_REPORT = "Отправить отчёт";
+    public static final String CALL_VOLUNTEER = "Позвать волонтёра";
+    public static final String ADDRESS_SCHEDULE = "Адрес и часы работы";
+    public static final String CALLBACK = "Обратный звонок";
+    public static final String YES = "Да";
+    public static final String NO = "Нет";
+
+
     public static void sendChoiceShelterMenu(Long chatId) {
         InlineKeyboardMarkup keyboardMarkup = createTwiceButtons(CAT_SHELTER, DOG_SHELTER);
         MessageService.sendMessage(chatId, "choice shelter menu", "Выбери раздел:", keyboardMarkup);
@@ -26,6 +36,14 @@ public class MenuService {
                 "\n" +
                 "/callback - запросить обратный звонок\n" +
                 "/volunteer - позвать волонтёра в чат");
+    }
+    public static void sendMainShelterMenu(Long chatId) {
+        InlineKeyboardMarkup keyboardMarkup = createTwiceButtons(SHELTER_INFO, ANIMAL_INFO, SEND_REPORT, CALL_VOLUNTEER);
+        MessageService.sendMessage(chatId, "main shelter menu", "Выбери раздел:", keyboardMarkup);
+    }
+    public static void sendAboutShelterMenu(Long chatId) {
+        InlineKeyboardMarkup keyboardMarkup = createTwiceButtons( ADDRESS_SCHEDULE, CALLBACK, CALL_VOLUNTEER);
+        MessageService.sendMessage(chatId, "about shelter menu", "Выбери раздел:", keyboardMarkup);
     }
 
 
@@ -51,6 +69,16 @@ public class MenuService {
 //        switch (text) {
 //            case CAT_SHELTER -> command = "/catShelter";
 //            case DOG_SHELTER -> command = "/dogShelter";
+//
+//            case YES -> command = "ДА";
+//            case NO -> command = "НЕТ";
+//
+//            case SHELTER_INFO -> command = "/menuAboutShelter";
+//            case ANIMAL_INFO -> command = "/menuAnimalGuide";
+//            case SEND_REPORT -> command = "/sendReport";
+//            case CALL_VOLUNTEER -> command = "/volunteer";
+//            case CALLBACK -> command = "/callback";
+//            case ADDRESS_SCHEDULE -> command = "/addressAndSchedule";
 //            default -> command = text;
 //        }
 //        return command;
