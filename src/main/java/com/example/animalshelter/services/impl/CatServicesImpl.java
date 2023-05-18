@@ -3,6 +3,7 @@ package com.example.animalshelter.services.impl;
 import com.example.animalshelter.exception.InvalidAnimalRequestException;
 import com.example.animalshelter.model.Cat;
 
+import com.example.animalshelter.repository.CatRepository;
 import com.example.animalshelter.services.CatServices;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +14,13 @@ import java.util.Map;
 
 @Service
 public class CatServicesImpl implements CatServices {
+    private final CatRepository catRepository;
     private final Map<Integer, Cat> catMap = new HashMap<>();
+
+    public CatServicesImpl(CatRepository catRepository) {
+        this.catRepository = catRepository;
+    }
+
     /**
      * Все коты в БД.
      * <br>
