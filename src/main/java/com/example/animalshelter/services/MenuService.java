@@ -1,6 +1,4 @@
 package com.example.animalshelter.services;
-
-import com.example.animalshelter.services.MessageService;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,7 @@ public class MenuService {
                 "/datingRules - правила знакомства с животным до того, как забрать его из приюта.\n" +
                 "/docList - список документов, необходимых для того, чтобы взять животное из приюта.\n" +
                 "/homeForOld - список рекомендаций по обустройству дома для взрослого животного.\n" +
-                "/denialReasons - список причин, почему могут отказать и не дать забрать собаку из приюта.\n" +
+                "/denialReasons - список причин, почему могут отказать и не дать забрать животное из приюта.\n" +
                 "\n" +
                 "Не нашли ответа на свой вопрос?\n" +
                 "\n" +
@@ -45,7 +43,6 @@ public class MenuService {
         InlineKeyboardMarkup keyboardMarkup = createTwiceButtons( ADDRESS_SCHEDULE, CALLBACK, CALL_VOLUNTEER);
         MessageService.sendMessage(chatId, "about shelter menu", "Выбери раздел:", keyboardMarkup);
     }
-
 
     public static InlineKeyboardMarkup createTwiceButtons(String ... buttons) {
         int length = buttons.length;
@@ -64,24 +61,24 @@ public class MenuService {
         }
         return keyboardMarkup;
     }
-//    public static String getCommandByButton(String text) {
-//        String command;
-//        switch (text) {
-//            case CAT_SHELTER -> command = "/catShelter";
-//            case DOG_SHELTER -> command = "/dogShelter";
-//
-//            case YES -> command = "ДА";
-//            case NO -> command = "НЕТ";
-//
-//            case SHELTER_INFO -> command = "/menuAboutShelter";
-//            case ANIMAL_INFO -> command = "/menuAnimalGuide";
-//            case SEND_REPORT -> command = "/sendReport";
-//            case CALL_VOLUNTEER -> command = "/volunteer";
-//            case CALLBACK -> command = "/callback";
-//            case ADDRESS_SCHEDULE -> command = "/addressAndSchedule";
-//            default -> command = text;
-//        }
-//        return command;
-//    }
+    public static String getCommandByButton(String text) {
+        String command;
+        switch (text) {
+            case CAT_SHELTER -> command = "/catShelter";
+            case DOG_SHELTER -> command = "/dogShelter";
+
+            case YES -> command = "ДА";
+            case NO -> command = "НЕТ";
+
+            case SHELTER_INFO -> command = "/menuAboutShelter";
+            case ANIMAL_INFO -> command = "/menuAnimalGuide";
+            case SEND_REPORT -> command = "/sendReport";
+            case CALL_VOLUNTEER -> command = "/volunteer";
+            case CALLBACK -> command = "/callback";
+            case ADDRESS_SCHEDULE -> command = "/addressAndSchedule";
+            default -> command = text;
+        }
+        return command;
+    }
 
 }

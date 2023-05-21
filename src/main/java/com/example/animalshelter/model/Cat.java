@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Cat {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
-     @Column(name = "id")
+     @Column(name = "cat_id")
      private int id;
      @Column(name = "breed_cat")
      private String breed;

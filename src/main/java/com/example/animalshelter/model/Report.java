@@ -1,19 +1,26 @@
 package com.example.animalshelter.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
 @Entity
+@Table(name = "report")
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "report_id")
     private long id;
 
     private LocalDate date;
     private String entry;
     private String photoId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "report_id", nullable = false,insertable=false, updatable=false)
+    @JsonManagedReference
+    private ProbationPeriod probationPeriod;
 
     public Report() {
     }
@@ -49,6 +56,14 @@ public class Report {
 
     public void setPhotoId(String photoId) {
         this.photoId = photoId;
+    }
+
+    public ProbationPeriod getProbationPeriod() {
+        return probationPeriod;
+    }
+
+    public void setProbationPeriod(ProbationPeriod probationPeriod) {
+        this.probationPeriod = probationPeriod;
     }
 
     @Override

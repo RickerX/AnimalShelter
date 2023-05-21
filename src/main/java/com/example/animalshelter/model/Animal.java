@@ -1,5 +1,7 @@
 package com.example.animalshelter.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -9,6 +11,7 @@ import java.util.Objects;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "animal_id")
     private long id;
     @Column(name = "breed")
     private String breed;
@@ -22,6 +25,18 @@ public class Animal {
     private String gender;
     @Column(name = "color")
     private String color;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id",nullable = false,insertable=false, updatable=false)
+    @JsonManagedReference
+    private Guardian guardian;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id", nullable = false,insertable=false, updatable=false)
+    @JsonManagedReference
+    private Shelter shelter;
+    @OneToOne(mappedBy = "animal", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id")
+    @JsonBackReference
+    private ProbationPeriod probationPeriod;
 
     public Animal() {
     }
@@ -80,6 +95,33 @@ public class Animal {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Guardian getGuardian() {
+        return guardian;
+    }
+
+    public void setGuardian(Guardian guardian) {
+        this.guardian = guardian;
+    }
+
+    public Shelter getShelter() {
+        return shelter;
+    }
+
+    public void setShelter(Shelter shelter) {
+        this.shelter = shelter;
+    }
+
+    public ProbationPeriod getProbationPeriod() {
+        return probationPeriod;
+    }
+
+    public void setProbationPeriod(ProbationPeriod probationPeriod) {
+        this.probationPeriod = probationPeriod;
+    }
+    public void setClient(Guardian guardian) {
+        this.guardian = guardian;
     }
 
     @Override
