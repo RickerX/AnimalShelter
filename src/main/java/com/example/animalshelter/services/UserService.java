@@ -105,11 +105,13 @@ public class UserService {
         } else if (userMessage.equals("/catShelter")) {
             user.setShelterType(ShelterType.CAT_SHELTER);
             MessageService.sendMessage(chatId, "Вы выбрали приют для котов");
+            MessageService.sendPhoto(chatId, "", "images/cat-shelter.jpg");
             MenuService.sendMainShelterMenu(chatId);
             this.shelterUserRepository.save(user);
         } else if (userMessage.equals("/dogShelter")) {
-            MessageService.sendMessage(chatId, "Вы выбрали приют для собак");
             user.setShelterType(ShelterType.DOG_SHELTER);
+            MessageService.sendMessage(chatId, "Вы выбрали приют для собак");
+            MessageService.sendPhoto(chatId, "", "images/dog-shelter.jpg");
             MenuService.sendMainShelterMenu(chatId);
             this.shelterUserRepository.save(user);
         } else if (infoMessageService.isInfo(userMessage, chatId)) {
