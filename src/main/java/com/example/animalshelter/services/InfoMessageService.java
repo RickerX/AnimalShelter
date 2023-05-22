@@ -28,7 +28,7 @@ public class InfoMessageService {
     public void sendInfoMessage(Long chatId, String tag) {
         InfoMessage infoMessage = (InfoMessage) getRepository(chatId).findById(tag).orElseThrow(RuntimeException::new);
         MessageService.sendMessage(chatId, tag, infoMessage.getText());
-        if (tag.equals("/addressandschedule")) {
+        if (tag.equals("/addressAndSchedule")) {
             ShelterType shelterType = shelterUserRepository.findById(chatId).orElseThrow().getShelterType();
             Shelter shelter = shelterRepository.findByShelterType(shelterType).get();
             MessageService.sendAddress(chatId, shelter);

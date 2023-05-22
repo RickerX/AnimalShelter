@@ -114,6 +114,31 @@ public class UserService {
             this.shelterUserRepository.save(user);
         } else if (infoMessageService.isInfo(userMessage, chatId)) {
             infoMessageService.sendInfoMessage(chatId, userMessage);
+        } else if (userMessage.equals("/addressAndSchedule")) {
+            MessageService.sendMessage(chatId,"Адрес и часы работы приюта для животных:\n" +
+                    "г.Астана ул.Гагарина д.1\n" +
+                    "пн-пт 08:00-20:00\n" +
+                    "сб-вс 08:00-18:00");
+        } else if (userMessage.equals("/datingRules")) {
+            MessageService.sendMessage(chatId,"Правила знакомства с животным:\n" +
+                    "1.необходимо быть спокойным и доброжелательным, чтобы животное могло доверять\n" +
+                    "2.необходимо набраться терпения\n" +
+                    "3.необходимо быть заботливым и любящим");
+        } else if (userMessage.equals("/homeAnimal")) {
+            MessageService.sendMessage(chatId,"Список рекомендаций по обустройству дома для животного:\n" +
+                    "1.необходимо обеспечить наличие корма, воды и туалета\n" +
+                    "2.необходимо создать для животного отдельный и уютный уголок\n" +
+                    "3.необходимо создать максимально доверительные отношения с животным");
+        } else if (userMessage.equals("/docList")) {
+            MessageService.sendMessage(chatId,"Необходимые документы:\n" +
+                    "Паспорт и ксерокопия\n" +
+                    "фото 3*4");
+        } else if (userMessage.equals("/reasonsRefusal")) {
+            MessageService.sendMessage(chatId,"Список причин для отказа взять животное из приюта:\n" +
+                    "1.Человек находится в состоянии алкогольного опьянения\n" +
+                    "2.Человек с психическими и умственными отклонениями\n" +
+                    "3.Человек, не достигший совершеннолетнего возраста\n" +
+                    "4.Человек, не зарекомендовавший себя как благонадежный");
         } else if (callbackService.isCallbackRequest(userMessage, chatId)) {
             callbackService.sendCallbackMessage(userMessage, chatId);
         } else if (userMessage.equals("/volunteer")) {
@@ -124,6 +149,7 @@ public class UserService {
             MessageService.sendMessage(chatId, "default", "Не понимаю... попробуй /start");
         }
     }
+
     private void sendFirstGreetings(Long chatId, String userName) {
         MessageService.sendMessage(chatId, "first greeting", "Привет! Я бот приюта для животных.\n" +
                 "Могу рассказать о приюте , а так же о том, что необходимо сделать, чтобы забрать питомца домой.");
