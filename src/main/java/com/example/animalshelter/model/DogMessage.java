@@ -2,10 +2,12 @@ package com.example.animalshelter.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "dog_message")
 public class DogMessage {
     @Id
     private String tag;

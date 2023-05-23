@@ -1,20 +1,27 @@
 package com.example.animalshelter.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@Table(name = "shelter")
 public class Shelter {
     @Id
-    private long id;
+    @Column(name = "shelter_id")
+    private Long id;
 
     private String title;
     private String address;
     private String phoneNumber;
     private String schedule;
     private ShelterType shelterType;
+    @OneToMany(mappedBy = "shelter")
+//    @JoinColumn
+    @JsonBackReference
+    private Set<Animal> animals;
 
     public Shelter() {
     }

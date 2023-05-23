@@ -2,9 +2,11 @@ package com.example.animalshelter.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 @Entity
+@Table(name = "shelter_user")
 public class ShelterUser {
     @Id
     private long chatId;
@@ -16,8 +18,9 @@ public class ShelterUser {
     public ShelterUser() {
     }
 
-    public ShelterUser(long chatId, ShelterType shelterType, String phoneNumber, String username) {
+    public ShelterUser(long chatId, UserStatus userStatus, ShelterType shelterType, String phoneNumber, String username) {
         this.chatId = chatId;
+        this.userStatus = userStatus;
         this.shelterType = shelterType;
         this.phoneNumber = phoneNumber;
         this.username = username;
@@ -68,11 +71,11 @@ public class ShelterUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShelterUser that = (ShelterUser) o;
-        return chatId == that.chatId && shelterType == that.shelterType && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(username, that.username);
+        return chatId == that.chatId && shelterType == that.shelterType && userStatus == that.userStatus && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(username, that.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatId, shelterType, phoneNumber, username);
+        return Objects.hash(chatId, shelterType, userStatus, phoneNumber, username);
     }
 }
