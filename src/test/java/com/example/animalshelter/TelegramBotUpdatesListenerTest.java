@@ -2,6 +2,7 @@ package com.example.animalshelter;
 
 import com.example.animalshelter.listener.TelegramBotUpdatesListener;
 import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -13,6 +14,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.when;
 
@@ -34,4 +39,6 @@ public class TelegramBotUpdatesListenerTest {
         telegramBot.execute(sendMessage);
         Mockito.verify(telegramBot, atLeastOnce()).execute(sendMessage);
     }
+
+
 }

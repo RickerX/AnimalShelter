@@ -1,9 +1,11 @@
 package com.example.animalshelter;
 
+import com.pengrad.telegrambot.TelegramBot;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,8 +24,12 @@ public class CatDogControllersTest {
     @Autowired
     MockMvc mockMvc;
 
+    @MockBean
+    TelegramBot telegramBot;
+
     @Test
     void givenNoCatsInDatabase_whenGetCats_thenEmptyJsonArray() throws Exception{
+
         mockMvc.perform(get("/api/cat"))
                 .andExpect(status().isOk())
                 .andExpect( jsonPath("$").isArray())
@@ -50,4 +56,5 @@ public class CatDogControllersTest {
                 .andExpect(jsonPath("$[0].breed").value("testBreed"));
 
     }
+
 }
