@@ -57,4 +57,34 @@ public class CatDogControllersTest {
 
     }
 
+    @Test
+    void givenNoDogsInDatabase_whenGetDogs_thenEmptyJsonArray() throws Exception{
+
+        mockMvc.perform(get("/api/dog"))
+                .andExpect(status().isOk())
+                .andExpect( jsonPath("$").isArray())
+                .andExpect( jsonPath("$").isEmpty());
+    }
+
+    @Test
+    void givenNoDogsInDatabase_whenDogAdded_thenItExistsInList() throws Exception{
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("breed","testBreed");
+
+        mockMvc.perform(post("/api/dog/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonObject.toString()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.breed").value("testBreed"));
+
+        mockMvc.perform(get("/dog/cat"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].breed").value("testBreed"));
+
+    }
+
 }
